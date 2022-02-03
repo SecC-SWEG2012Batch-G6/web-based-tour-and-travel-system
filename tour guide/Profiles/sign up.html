@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "UTF-8">
+	<meta  name = "keywords" content = "tour guides, interpreter">
+	<meta name = "author" content = "4HF tour and travel agency">
+	<meta name = "viewport" content = "width = device-width,initial-scale = 1.0">
+	<link rel="stylesheet" href="../../fontawesome-free-5.15.4-web/css/all.css">
+	<link rel="stylesheet" href="../../footerCSS.css">
+	<script defer src = "form-validation.js"></script>
+	<title>Sign in</title>
+
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		footer{
+			position: absolute;
+    bottom: 10px;
+		}
+
+		body{
+			background-image: url('../../destinations/images/bahirdar.jpg');
+			background-size: cover;
+			background-position: center center;
+			color: black;
+		}
+
+		a{
+			color: rgb(18, 80, 214);
+			text-decoration: none;
+
+		}
+
+		.logo-container{
+		width: 100%;
+		padding: 20px;
+		justify-content: space-between;
+		align-items: center;
+		}
+
+		.logo-container .logo{
+			float: left;
+		}
+
+		.logo-container button{
+			float: right;
+			margin-right: 50px;
+			background-color: #00ff00;
+			height: 30px;
+			border: 1px solid blue;
+			border-radius: 20px;
+			font-size: 15px;
+		}
+
+		.address-container{
+			width: 100%;
+			margin: 20px;
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			align-self: center;
+			flex-wrap: nowrap;
+			clear: both;
+			position: absolute;
+			bottom: 0%;
+			padding-top: 10px;
+			padding-bottom: 30px;
+		}
+
+		.copyright{
+			position: absolute;
+			bottom: 0%;
+		}
+
+		.form-container{
+			position: absolute;
+			left: 50%;
+			top: 45%;
+			width: 340px;
+			background-color: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.8));
+			transform: translate(-50%,-50%);
+			color: white;
+			border-radius: 20px;
+		}
+
+		.form-container fieldset{
+			height: 440px;
+			border: none;
+			padding: 0px 30px;
+			border-radius: 20px;
+			box-shadow: 7px 7px 60px black;
+		}
+
+		.form-container label{
+			line-height: 30px;
+			font-size: 1.4rem;
+		}
+
+		input{
+			height:25px;
+			width: 100%;
+			padding-left: 10px;
+			border: none;
+			outline: none;
+			border-bottom:2px solid rgb(0, 204, 255);
+			background-color:white;
+			border-radius: 5px;
+		}
+
+		input:focus{
+			transition: 0.1s;
+			border:3px solid rgb(19, 230, 19);
+		}
+
+		input[type="submit"]{
+			width: 50%;
+			margin-left: 50px;
+			margin-top: 10px;
+			background-color: blueviolet;
+			border:2px solid rgb(0, 204, 255);
+			color: white;
+			cursor: pointer;
+		}
+
+		
+		.form-container .input-container{
+			position: relative;   
+		}
+		.input-container i{
+			position: absolute;
+			top:35px;
+			right: 3px;
+			color: black;
+			visibility: hidden;
+		}
+
+		.input-container small{
+			background-color: cornsilk;
+			position: relative;
+			width:fit-content;
+			margin-top: 3px;
+			padding-left: 5px;
+			border-radius: 3px;
+			display: block;
+			visibility: hidden;
+		}
+		.input-container.success input{
+			border:2px solid #3ecc71;
+		}
+
+		.input-container.success i.fa-check-circle{
+			visibility: visible;
+			color: #3ecc71;
+		}
+
+		.input-container.error input{
+			border:2px solid #e74c3c;
+		}
+
+		.input-container.error small{
+			visibility: visible;
+			color: red;
+		} 
+
+		.input-container.error i.fa-exclamation-circle{
+			visibility: visible;
+			color: #e74c3c;
+		}
+
+		.input-container i#on{
+			visibility:visible;
+			right: 20px;
+			cursor:auto;
+		}
+
+		.input-container i#off{
+			visibility:hidden;
+			right: 20px;
+		}
+		@media only screen and (max-width:910px) {
+
+			.form-container fieldset{
+				height: 400px;
+			}
+
+			.form-container label{
+				line-height: 30px;
+				font-size: 1.rem;
+			}
+		}
+
+		@media only screen and (max-width:560px) {
+			
+			.form-container label{
+				line-height: 25px;
+				font-size: 1.4rem;
+			}
+
+			.address-container{
+				display: none;
+			}
+
+		}
+
+		@media only screen and (max-width:400px){
+			.form-container fieldset{
+				height: 420px;
+			}
+		}
+		
+
+	</style>
+
+  </head>
+     
+  <body>
+
+	<header>
+		<div class = "logo-container">
+			<a href = "../../homepage.html" class = "logo"><img src = "../../Logo3.jpg" alt = "LOGO" width = "130px" height = "90px" ></a>       		
+			<button > <a href = "Tips.html" width = "100px;">Travel Blogs</a></button>
+		</div>
+	</header>
+
+   <main>
+	<div class = "form-container">
+		<fieldset>
+			<form id  = "form">
+			  <h1>Signup</h1>
+			  <div class="input-container">
+				<label for = "username">Username</label><br>
+			    <input type = "text" id = "username" name = "Username" placeholder = "Username">
+				<i class="fas fa-check-circle"></i>
+				<i class="fas fa-exclamation-circle"></i>
+				<small>Error message</small>
+			  </div>
+			  <div class="input-container">
+				<label for = "email">Username</label><br>
+			    <input type = "text" id = "email" name = "email" placeholder = "Email">
+				<i class="fas fa-check-circle"></i>
+				<i class="fas fa-exclamation-circle"></i>
+				<small>Error message</small>
+			  </div>
+			  <div class="input-container">
+				<label for = "tele">Phone number</label><br>
+			    <input type = "tel" id = "tele" name = "tele"  placeholder = "094-996-0922" required>
+			    <i class="fas fa-check-circle"></i>
+				<i class="fas fa-exclamation-circle"></i>
+				<small>Error message</small>
+			  </div>
+			  <div class="input-container">
+				<label for = "password">Password</label><br>
+				<input type = "password" id = "password" name = "Password" placeholder = "password">
+				<i class="fas fa-eye" id = "on" ></i>
+				<i class="fas fa-eye-slash" id = "off"s></i>
+				<i class="fas fa-check-circle"></i>
+				<i class="fas fa-exclamation-circle"></i>
+				<small>Error message</small>
+			  </div>
+			  <div class="input-container">
+				<label for = "confirm">Confirm password</label><br>
+			    <input type = "password" id = "confirm" name = "confirm" placeholder = "confirm password">
+				<i class="fas fa-eye" id = "on"></i>
+				<i class="fas fa-eye-slash" id = "off"></i>
+				<i class="fas fa-check-circle"></i>
+				<i class="fas fa-exclamation-circle"></i>
+				<small>Error message</small>
+			  </div>
+			  <input type = "submit" id = "submit" name = "submit" value = "Signup"><br>
+			</form>
+		  </fieldset>
+	</div>
+    
+	</main>
+	<footer style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="footer-items">
+                    <h4>Terms and Privacy</h4>
+                    <ul id = "lists" style="color:#bbb;text-decoration: none;" >
+                        <li><a href="#">Faq</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                        <li>Travel informations</li>
+                    </ul>
+                </div>
+                <div class="footer-items">
+                    <h4>Contacts</h4>
+                    <ul id = "lists">
+                        <li>Tel : +251111234534</li>
+                        <li><a style="color:#bbb;text-decoration: none;" href="mailto:email@gmail.com">E-mail</a></li>
+                    </ul>
+                </div>
+                <div class="footer-items">
+                    <h4>Follow us on</h4>
+                    <div class="socials">
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+				<div class = "copyright" style = "width:100%; text-align: center;color: white;">
+					<i>Copyright 2022 by Refsnes Data. All Rights Reserved.</i>
+				 </div>
+            </div>
+        </div>
+	</footer>
+  </body>
+</html>

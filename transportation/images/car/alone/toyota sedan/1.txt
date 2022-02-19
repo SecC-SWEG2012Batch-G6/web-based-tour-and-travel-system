@@ -1,0 +1,102 @@
+Overview	
+Engine Type	Gas
+Transmission	6-speed manual
+Drive Type	Front wheel drive
+Cylinders	Inline 4
+Combined MPG	34 mpg
+Total Seating	5
+Basic Warranty	3 yr./ 36,000 mi.
+Drive Type	Front wheel drive
+Transmission	6-speed manual
+Combined MPG	34 mpg
+EPA Mileage Est. (Cty/Hwy)	30/39 mpg
+Fuel Tank Capacity	11.6 gal.
+Fuel Type	Regular unleaded
+Range In Miles (Cty/Hwy)	348.0/452.4 mi.
+Engine
+Direct Injection	yes
+Base Engine Size	1.5 l
+Base Engine Type	Gas
+Cam Type	Double overhead cam (dohc)
+Cylinders	Inline 4
+Horsepower	106 hp @ 6,000 rpm
+Torque	103 lb-ft @ 4,000 rpm
+Valves	16
+Safety
+2 Front Headrests	yes
+3 Rear Headrests	yes
+Child Seat Anchors	yes
+Daytime Running Lights	yes
+Dual Front Side-Mounted Airbags	yes
+Engine Immobilizer	yes
+Front And Rear Head Airbags	yes
+Pre-Collision Safety System	yes
+Stability Control	yes
+Tire Pressure Monitoring	yes
+Traction Control	yes
+4-Wheel ABS	yes
+Emergency Braking Assist	yes
+Passenger Airbag Occupant Sensing Deactivation	yes
+Rear Center 3-Point Belt	yes
+Rear Door Child Safety Locks	yes
+Rear Height Adjustable Headrests	yes
+Ventilated Front Disc / Rear Drum Brakes	yes
+In-Car Entertainment
+3 Months Of Provided Satellite Radio Service	yes
+6 Total Speakers	yes
+USB Connection	yes
+Auxiliary Audio Input And USB With External Media Control	yes
+Satellite Radio Satellite Radio	yes
+AM/FM Stereo	yes
+Comfort & Convenience
+Cruise Control	yes
+Electric Power Steering	yes
+Front Cupholders	yes
+Front Door Pockets	yes
+Front Seatback Storage	yes
+Keyless Ignition	yes
+Overhead Console With Storage	yes
+Rear View Camera	yes
+Tilt And Telescopic Steering Wheel	yes
+Audio And Cruise Controls On Steering Wheel	yes
+Interior Air Filtration	yes
+Dual Illuminating Vanity Mirrors	yes
+Single Zone Front Air Conditioning	yes
+Power Feature
+1 One-Touch Power Windows	yes
+Remote Keyless Power Door Locks	yes
+Heated Mirrors	yes
+Instrumentation
+Clock	yes
+External Temperature Display	yes
+Tachometer	yes
+Trip Computer	yes
+Front Seat Dimensions
+Front Seat Dimensions
+4 -Way Manual Passenger Seat Adjustment	yes
+6 -Way Manual Driver Seat Adjustments	yes
+Bucket Front Seats	yes
+Cloth	yes
+Height Adjustable Driver Seat	yes
+Front Head Room	38.2 in.
+Front Hip Room	48.6 in.
+Front Leg Room	41.9 in.
+Front Shoulder Room	53.1 in.
+
+Rear Seat Dimensions
+Rear Seat Dimensions
+Rear Head Room	36.8 in.
+Rear Hip Room	49.5 in.
+Rear Leg Room	34.4 in.
+Rear Shoulder Room	50.0 in.
+Split-Folding Rear Seatback	yes
+Dimensions
+Cargo Capacity, All Seats In Place	13.5 cu.ft.
+Curb Weight	2,385 lbs.
+EPA Interior Volume	99.4 cu.ft.
+Ground Clearance	5.5 in.
+Height	58.5 in.
+Length	171.2 in.
+Overall Width Without Mirrors	66.7 in.
+Turning Circle	32.2 ft.
+Wheel Base	101.2 in.

@@ -1,0 +1,27 @@
+tata xenon
+Engine
+ENGINE
+6 L
+Gearbox
+GEARBOX
+Manual
+Year
+YEAR
+2020
+COLOR
+White
+Body type
+BODY TYPE
+Buses & Vans
+Fuel type
+FUEL TYPE
+Diesel
+Air con
+AIR CON
+Yes
+Drive type
+DRIVE TYPE
+Left
+Condition
+CONDITION
+New

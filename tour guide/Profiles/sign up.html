@@ -7,7 +7,8 @@
 	<meta name = "viewport" content = "width = device-width,initial-scale = 1.0">
 	<link rel="stylesheet" href="../../fontawesome-free-5.15.4-web/css/all.css">
 	<link rel="stylesheet" href="../../footerCSS.css">
-	<script defer src = "form-validation.js"></script>
+	<script defer src="signupValidation.js"></script>
+	<script defer src="createAcountStorage.js"></script>
 	<title>Sign in</title>
 
 	<style>
@@ -19,7 +20,7 @@
 
 		footer{
 			position: absolute;
-    bottom: 10px;
+   			 bottom: 10px;
 		}
 
 		body{
@@ -79,7 +80,7 @@
 		.form-container{
 			position: absolute;
 			left: 50%;
-			top: 45%;
+			top: 55%;
 			width: 340px;
 			background-color: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.8));
 			transform: translate(-50%,-50%);
@@ -88,7 +89,7 @@
 		}
 
 		.form-container fieldset{
-			height: 440px;
+			height: 460px;
 			border: none;
 			padding: 0px 30px;
 			border-radius: 20px;
@@ -100,7 +101,7 @@
 			font-size: 1.4rem;
 		}
 
-		input{
+		.form-container	input{
 			height:25px;
 			width: 100%;
 			padding-left: 10px;
@@ -184,7 +185,7 @@
 		@media only screen and (max-width:910px) {
 
 			.form-container fieldset{
-				height: 400px;
+				height: 460px;
 			}
 
 			.form-container label{
@@ -207,8 +208,36 @@
 		}
 
 		@media only screen and (max-width:400px){
-			.form-container fieldset{
+			.form-container fieldset.signup{
 				height: 420px;
+			}
+		}
+
+		@media only screen and (max-width:360px){
+			.input-container input{
+				width: 100%;
+			}
+			.form-container{
+				width: 100%;
+			}
+
+			fieldset.signup{
+				width: 100%;
+			}
+
+			form{
+				width: 100%;
+			}
+		}
+
+		@media only screen and (max-width:290px){
+			fieldset.signup{
+				height: 460px;
+			}
+		}
+		@media only screen and (max-width:290px){
+			fieldset.signup{
+				height: 480px;
 			}
 		}
 		
@@ -228,7 +257,7 @@
 
    <main>
 	<div class = "form-container">
-		<fieldset>
+		<fieldset class="signup">
 			<form id  = "form">
 			  <h1>Signup</h1>
 			  <div class="input-container">
@@ -236,21 +265,21 @@
 			    <input type = "text" id = "username" name = "Username" placeholder = "Username">
 				<i class="fas fa-check-circle"></i>
 				<i class="fas fa-exclamation-circle"></i>
-				<small>Error message</small>
+				<small></small>
 			  </div>
 			  <div class="input-container">
-				<label for = "email">Username</label><br>
+				<label for = "email">Email</label><br>
 			    <input type = "text" id = "email" name = "email" placeholder = "Email">
 				<i class="fas fa-check-circle"></i>
 				<i class="fas fa-exclamation-circle"></i>
-				<small>Error message</small>
+				<small></small>
 			  </div>
 			  <div class="input-container">
 				<label for = "tele">Phone number</label><br>
 			    <input type = "tel" id = "tele" name = "tele"  placeholder = "094-996-0922" required>
 			    <i class="fas fa-check-circle"></i>
 				<i class="fas fa-exclamation-circle"></i>
-				<small>Error message</small>
+				<small></small>
 			  </div>
 			  <div class="input-container">
 				<label for = "password">Password</label><br>
@@ -259,22 +288,25 @@
 				<i class="fas fa-eye-slash" id = "off"s></i>
 				<i class="fas fa-check-circle"></i>
 				<i class="fas fa-exclamation-circle"></i>
-				<small>Error message</small>
+				<small></small>
 			  </div>
 			  <div class="input-container">
 				<label for = "confirm">Confirm password</label><br>
 			    <input type = "password" id = "confirm" name = "confirm" placeholder = "confirm password">
-				<i class="fas fa-eye" id = "on"></i>
-				<i class="fas fa-eye-slash" id = "off"></i>
+				<i class="eye3 fas fa-eye" id = "on"></i>
+				<i class="eye4 fas fa-eye-slash" id = "off"></i>
 				<i class="fas fa-check-circle"></i>
 				<i class="fas fa-exclamation-circle"></i>
-				<small>Error message</small>
+				<small></small>
 			  </div>
 			  <input type = "submit" id = "submit" name = "submit" value = "Signup"><br>
 			</form>
+			
+    
 		  </fieldset>
 	</div>
-    
+
+
 	</main>
 	<footer style="display: none;">
         <div class="container">

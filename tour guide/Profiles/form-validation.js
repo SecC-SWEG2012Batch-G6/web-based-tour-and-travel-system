@@ -1,18 +1,49 @@
-const submitBtn = document.querySelector("input[id='submit'");
+const submitBtn = document.querySelector("input[id='submit']");
 const username =  document.getElementById("username");
 const password = document.getElementById("password");
-const phone = document.getElementById("tele");
-const confirmP = document.getElementById("confirm");
-const email = document.getElementById("email");
+const form = document.getElementById("form");
+
 
 submitBtn.onclick = (e) =>{
     e.preventDefault();
     validateUsername();
     validatePassword();
-    ConfirmPassword();
-    validatePhone();
-    validateEmail();
 };
+const small = document.querySelectorAll("small");
+        submitBtn.addEventListener("click",()=>{
+            let Counter = 0;
+            for(let el of small){
+                if(el.innerHTML.trim() !== ''){
+                    Counter++;
+                }
+            }
+            console.log(Counter);
+            if(Counter != 0){
+                alert("Validation rule is not obeyed");
+            }else{
+                var userEmail = username.value.trim();
+                let flag = false;
+                const Members = JSON.parse(localStorage.getItem("Members"))?JSON.parse(localStorage.getItem("Members")):[];
+                for(let data of Members){
+                    console.log(data);
+                    if(data.username.trim() == username.value.trim() || data.e_mail.trim() == username.value.trim()){
+                        for(let data of JSON.parse(localStorage.getItem("Members"))){
+                            if(data.Password.trim() == password.value.trim()){
+                                flag = true;
+                            }
+                        }
+                        break;
+                    }
+                }
+
+                if(flag){
+                    alert("You are successfully logged in");
+                }else{
+                    alert("Username or password mismatch");
+                }
+            }
+        });
+
 
 
 function setError(elme,message){
@@ -24,6 +55,7 @@ function setError(elme,message){
  }
 
 function validateUsername(){
+    let usernameRegEx = /(^([A-Za-z])+\w{6,30}$)|(^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$)/;
     const inputsValue = username.value.trim();
     if(inputsValue === ''){
         setError(username,"user name is required");
@@ -31,15 +63,19 @@ function validateUsername(){
     }else if(inputsValue.length < 6){
         setError(username,"Username must be more than 6 characters");
         return false;
-    }else if(inputsValue.length > 16){
-        setError(username,"Username can't be more than 15 characters");
+    }else if(inputsValue.length > 30){
+        setError(username,"Username can't be more than 30 characters");
         return false;
+    }// usernameRegEx = /^([a-zA-z])\w{6,30}$/;
+    else if(!usernameRegEx.test(inputsValue)){
+        setError(username,"Username or email doesn't match the patter");
     }
     else{
         username.parentNode.classList.remove("error");
         username.parentNode.classList.add("success");
+        const small = username.parentNode.querySelector("small");
+        small.innerHTML = '';
         return true;
-
     }    
 }
 
@@ -60,76 +96,26 @@ function validatePassword(){
     else{
         password.parentNode.classList.remove("error");
         password.parentNode.classList.add("success");
+        const small = password.parentNode.querySelector("small");
+        small.innerHTML = '';
         return true;
     }    
 }
 
-function ConfirmPassword(){
-    const inputsValue = password.value.trim();
-    const confirmVal = confirmP.value.trim();
-    if(confirmVal === ''){
-        setError(confirmP,"Please confirm your password");
-    }
-    else if(confirmVal != inputsValue){
-        setError(confirmP,"Confirm your password again");
-    }
-    else{
-        confirmP.parentNode.classList.remove("error");
-        confirmP.parentNode.classList.add("success");
-        return true;
-    }
-}
 
-function validateEmail(){
-    const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const emailValue = email.value.trim();
-    if(emailValue == ''){
-        setError(email,"Email is required");
-    }else if(!emailRegEx.test(emailValue)){
-        setError(email,"Email is not valid");
-    }
-    else{
-        email.parentNode.classList.remove("error");
-        email.parentNode.classList.add("success");
-        return true;
-    }
-}
-
-function validatePhone(){
-    const telRegEx = /^(\+251|0)([\s-]?9\d{1}|(9\d{1}))[\s-]?\d{3}[\s-]?\d{4}$/;  //(\+251|0)([\s-]?9\d{1}|(9\d{1}))[\s-]?\d{3}[\s-]?\d{4}$
-    const inputsValue = phone.value.toString();
-    console.log(inputsValue);
-    if(inputsValue === ''){
-        setError(phone,"Phone number is required");
-        return false;
-    }else if(inputsValue.length < 10){
-        console.log("too few chars");
-        setError(phone,"Phone number can't be less than 10 characters");
-        return false;
-    }else if(inputsValue.length > 15){
-        console.log("too much chars");
-        setError(phone,"Phone number can't be more than 15 characters");
-        return false;
-    }else if(!telRegEx.exec(inputsValue)){
-        console.log("pattern problem");
-        setError(phone,"Please match the phone number pattern");
-    }
-    else{
-        phone.parentNode.classList.remove("error");
-        phone.parentNode.classList.add("success");
-        return true;
-    }    
-}
 
 const eye = document.querySelector(".fa-eye");
 const eye2 =document.querySelector(".fa-eye-slash");
 const pass = document.querySelector("input[id='password']");
-const conf = document.querySelector("input[id='confirm']");
-const passInputs  = document.querySelector("input[type='password']");
-console.log(passInputs);
+//const conf = document.querySelector("input[id='confirm']");
+const passInputs  = document.querySelectorAll("input[type='password']");
+const eyes = document.querySelectorAll(".fa-eye");
+const eyeSlashes = document.querySelectorAll(".fa-eye-slash");
+
+
 function eyeVisibility(){
     var passwordIN = pass.value.trim();
-    console.log(passwordIN);
+    console.log(pass);
     console.log(pass.value);
     console.log(passwordIN === '');
     if(pass.value.trim() === ''){
@@ -141,27 +127,12 @@ function eyeVisibility(){
     }
 }
 
-function eyeVisibility2(){
-    var passwordIN = conf.value.trim();
-    console.log(passwordIN);
-    console.log(conf.value);
-    console.log(passwordIN === '');
-    if(conf.value.trim() === ''){
-        eye.id = "off";
-        eye2.setAttribute("id", "off");
-    }else{
-        eye.id = "on";
-        eye2.id = "off";
-    }
-}
-window.onload = eyeVisibility;
+window.addEventListener("load",eyeVisibility);
 pass.onfocus = eyeVisibility;
 pass.onkeyup = eyeVisibility;
-/*conf.onfocus = eyeVisibility;
-  conf.onkeyup = eyeVisibility;*/
+
 eye.addEventListener("click",toggle);
 eye2.addEventListener("click",toggle);
-
 function toggle(){
     if(eye.id == "on"){
         eye.id = "off";
@@ -180,14 +151,49 @@ function toggle(){
     }
 }
 
+      
+        
+        
+        /*
+		btn.onclick = ()=>{
+			for(let key in localStorage){
+				if(localStorage.getItem(key))
+				console.log(`${key} : ${localStorage.getItem(key)}`);
+			}
+		};
+	
 
+*/
 
 
 /*
+search the exisence of the key in the local storage and check its match with the password
+if exists the acount is already exists
+log in success and failed
 
-access all the input password elements and eye
+window.onload = chekcInput;
+pass.onfocus = chekcInput;
+pass.onkeyup = chekcInput;
+for(let elem of eyeSlashes){
+    elem.addEventListener("click",toggle);
+}
 
-
+for(let elem of eyes){
+    elem.addEventListener("click",toggle);
+}
+// access all the input password elements and eye
+function chekcInput(){
+    for(let inpt of passInputs){
+        if(inpt.value.trim() === ''){
+            eye.id = "off";
+            eye2.setAttribute("id", "off");
+        }else{
+            eye.id = "on";
+            eye2.id = "off";
+        }
+    }
+}
+/*
 (event)=>{
     var passwordIN = event.target.value.trim();
     console.log(passwordIN);

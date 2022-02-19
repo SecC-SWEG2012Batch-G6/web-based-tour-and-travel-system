@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="profileCSS.css">
 	<link rel="stylesheet" href="../../footerCSS.css">
 	<link rel="stylesheet" href="../../navStyle.css">
+	<script defer src="../../NavScript.js"></script>
+	<script defer src = "save.js"></script>
 	<title>Haymnaot Demis</title>
  </head>
  
@@ -29,7 +31,7 @@
 				<button class = "login" style = "width:100px;"><a href = "log in.html">Log In</a></button>    
 			</div>
 			<nav>
-				<label for="fa-bars-label" class = "fa-bars-label" onclick="changeFont()">
+				<label for="fa-bars-label" class = "fa-bars-label">
 					<i class="fas fa-bars"></i>
 				</label>
 				<input type="checkbox" id = "fa-bars-label">
@@ -86,138 +88,110 @@
 			</nav>
 	   </header>
    <br>
-   <main>
-    <div>
-	   <caption><h3>Some tour experiences view</h3></caption>
-	   <article>
-			<div class="vidcontain"><video width = "100%" controls><source src = "videos/BRIDGE to ETHIOPIA Tourism 2015 - Lalibela.mp4" type  = "video/mp4"></video></div>
-			<div class="profile">
-				<h3>Haymanot Demis</h3>
-				   <table class = "">
-				     <tr>
-					    <th >Qualification
+<main>
+	<div>
+		<caption><h3>Some tour experiences view</h3></caption>
+		<article>
+				<div class="vidcontain"><video width = "100%" controls><source src = "videos/BRIDGE to ETHIOPIA Tourism 2015 - Lalibela.mp4" type  = "video/mp4"></video></div>
+				<div class="profile">
+					<h3>Haymanot Demis</h3>
+					<table class = "">
+						<tr>
+							<th >Qualification
+							</th>
+							<td>
+							bachelor degree in tourism industry
+							</td>
+						</tr>
+						<tr>
+						<th>
+							Experience
 						</th>
 						<td>
-						  bachelor degree in tourism industry
+							5 year in two companies
 						</td>
-					 </tr>
-					 <tr>
-					   <th>
-					      Experience
-					   </th>
-					   <td>
-					       5 year in two companies
-					   </td>
-					 </tr>
-					 <tr>
-					   <th>
-					      Language skills
-					   </th>
-					   <td>
-					       Amharic,English
-					   </td>
-					 </tr>
-					 <tr>
-					   <th>
-					      Services
-					   </th>
-					   <td>
-					       Reflection, Driving, Translation and interpretation
-					   </td>
-					 </tr>
-					 <tr>
-					   <th>
-					      Price
-					   </th>
-					   <td>
-					       60Birr/H
-					   </td>
-					 </tr>
-				   </table>
-				<div>
-					He started to work with us since 2013. He is very familiar to the many places in Ethiopia.
-					You will surely enjoy a lovely tour.
-				</div>	
+						</tr>
+						<tr>
+						<th>
+							Language skills
+						</th>
+						<td>
+							Amharic,English
+						</td>
+						</tr>
+						<tr>
+						<th>
+							Services
+						</th>
+						<td>
+							Reflection, Driving, Translation and interpretation
+						</td>
+						</tr>
+						<tr>
+						<th>
+							Price
+						</th>
+						<td>
+							60Birr/H
+						</td>
+						</tr>
+					</table>
+					<div>
+						He started to work with us since 2013. He is very familiar to the many places in Ethiopia.
+						You will surely enjoy a lovely tour.
+					</div>	
+				</div>
+				<div class="imag"><img src = "../images/tizita.jpg" alt = "Guideing tour" width = "100%">
+					<figcaption>Semien Mountain</figcaption>
+				</div>
+		</article>
+		<div class = "resrv-btn">
+			<div class="reserve" id="Haymanot Demis" title = "60">
+				<a href="tripForm.html">Assign My Tour Guide</a>
 			</div>
-			<div class="imag"><img src = "../images/tizita.jpg" alt = "Guideing tour" width = "100%">
-				<figcaption>Semien Mountain</figcaption>
-			</div>
-	   </article>
-		<section class = "trip-form-container">		
-				<fieldset>
-					<legend>Create trip form</legend>
-					<form>
-						<label for = "name">Full name</label>
-						<input type = "text" name = "Fname" class = "no-outline" id= "name" placeholder = "Full Name" maxlength = "20" required>
-						
-						<label for = "place">Where you are going to go?</label>
-						<input type = "Search" class = "no-outline" id = "place" name = "place" value = "Addis Ababa, Ethiopia"  required>
-							
-						<label for="tele">Phone </label>
-						<input type="tel" id = "tele" name = "mobile">
-					
-						
-						<label for = "mail">Email</label><br>
-						<input type = "email" id = "mail" name = "E-mail" placeholder = "Username@gmail.com" required>
-		
-						<label for = "Date">From date</label>
-								
-						<input type = "date" id = "St-Date" name = "Date-st" required>
-
-						<label for = "Date">to date</label> 
-						
-						<input type = "date" id = "En-Date" name = "Date-en" required>
-					
-						<label for="credit-card">Credit card number</label>
-						<input type="number" name  = "credit-card" id = "credit-card" minlength="4" maxlength="8">
-				
-						<input type = "submit" id = "submit-btn" name = "submit" value = "Create">
-						<input type = "reset" id = "reset" name = "clear" value = "clear">
-					</form>
-					</fieldset>
-		</section>
-	  
-	 
+		</div>
 	</div>
-   
-		<h1>Proffessional tour guides</h1>
-	   <section class = "guide-container">
-		   <div class="guide">
-			 <a href = "../images/gud.jpg"><img src = "../images/gud.jpg" alt = "Haymanot Demis(tour guide)"></a>
-			 <a class = "guideDesc" href = "#">Haymanot Demis (Tour Guide)</a>
-		   </div>
-		   <div class="guide">
-				<a href = "../images/guide man.jpg"><img src = "../images/guide man.jpg" alt = "Fuad Miftah(tour guide)" height = "" width  = ""></a>
-				<a class = "guideDesc" href = "Guy 2.html">Fuad Miftah ( Tour guide/Driver)</a>
-		   </div>
-		   <div class="guide">
-				<a href = "../images/guide1.jpg"><img src = "../images/guide1.jpg" alt = "Hana Chane(tour guide)" height = "" width  = "55%"></a>
-				<a class = "guideDesc" href = "Guy 3.html">Hana Chane (Tour guide)</a>
-		   </div>
-		   <div class="guide">
-				<a href = "../images/gonder.jpg"><img src = "../images/gonder.jpg" alt = "Hamere Endale(tour guide)" height = "" width  = ""></a>
-				<a class = "guideDesc" href = "Guy 4.html">Hamere Endale (Tour Guide)</a>
-		   </div>
-		   <div class="guide">
-				<a href = "../images/tourr.jpg"><img src = "../images/tourr.jpg" alt = "Haileamlak Desalegn(tour guide)" height = "" width  = ""></a>
-				<a class = "guideDesc" href = "Guy 5.html">Haileamlak Desalegn ( Tour Guide/Translator)</a>
-		   </div>
-		   <div class="guide">
-				<a href = "../images/tour guide.jpg"><img src = "../images/tour guide.jpg" alt = "Henok Kefale(tour guide)" height = "" width  = ""></a>
-				<a class = "guideDesc" href = "#">Henok Kefale (Tour Guide)</a>
-		   </div>
-		   <div class="guide">
-				<a href = "../images/tour.jpg"><img src = "../images/tour.jpg" alt = "Hiwot Birhanu(tour guide)" height = "" width  = ""></a>
-				<a class = "guideDesc" href = "#">Hiwot Birhanu (Tour Guide)</a>
-		   </div>
-		   <div class="guide">
-				<a href = "../images/images.jpg"><img src = "../images/images.jpg" alt = "Natnael Yigermal(tour guide)" height = "" width  = ""></a>
-				
-				<a class = "guideDesc" href = "#" >Natnael Yigermal ( Tour Guide/Camera man)</a>
-		   </div>
-	   </section>
 
-	   <footer>
+
+
+		<h1>Proffessional tour guides</h1>
+	<section class = "guide-container">
+			<div class="guide">
+				<a href = "../images/gud.jpg"><img src = "../images/gud.jpg" alt = "Haymanot Demis(tour guide)"></a>
+				<a class = "guideDesc" href = "#">Haymanot Demis (Tour Guide)</a>
+			</div>
+			<div class="guide">
+					<a href = "../images/guide man.jpg"><img src = "../images/guide man.jpg" alt = "Fuad Miftah(tour guide)" height = "" width  = ""></a>
+					<a class = "guideDesc" href = "Guy 2.html">Fuad Miftah ( Tour guide/Driver)</a>
+			</div>
+			<div class="guide">
+					<a href = "../images/guide1.jpg"><img src = "../images/guide1.jpg" alt = "Hana Chane(tour guide)" height = "" width  = "55%"></a>
+					<a class = "guideDesc" href = "Guy 3.html">Hana Chane (Tour guide)</a>
+			</div>
+			<div class="guide">
+					<a href = "../images/gonder.jpg"><img src = "../images/gonder.jpg" alt = "Hamere Endale(tour guide)" height = "" width  = ""></a>
+					<a class = "guideDesc" href = "Guy 4.html">Hamere Endale (Tour Guide)</a>
+			</div>
+			<div class="guide">
+					<a href = "../images/tourr.jpg"><img src = "../images/tourr.jpg" alt = "Haileamlak Desalegn(tour guide)" height = "" width  = ""></a>
+					<a class = "guideDesc" href = "Guy 5.html">Haileamlak Desalegn ( Tour Guide/Translator)</a>
+			</div>
+			<div class="guide">
+					<a href = "../images/tour guide.jpg"><img src = "../images/tour guide.jpg" alt = "Henok Kefale(tour guide)" height = "" width  = ""></a>
+					<a class = "guideDesc" href = "#">Henok Kefale (Tour Guide)</a>
+			</div>
+			<div class="guide">
+					<a href = "../images/tour.jpg"><img src = "../images/tour.jpg" alt = "Hiwot Birhanu(tour guide)" height = "" width  = ""></a>
+					<a class = "guideDesc" href = "#">Hiwot Birhanu (Tour Guide)</a>
+			</div>
+			<div class="guide">
+					<a href = "../images/images.jpg"><img src = "../images/images.jpg" alt = "Natnael Yigermal(tour guide)" height = "" width  = ""></a>
+					
+					<a class = "guideDesc" href = "#" >Natnael Yigermal ( Tour Guide/Camera man)</a>
+			</div>
+	</section>
+</main>
+	<footer>
         <div class="container">
             <div class="row">
                 <div class="footer-items">

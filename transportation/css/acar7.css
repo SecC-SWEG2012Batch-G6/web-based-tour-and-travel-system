@@ -1,0 +1,325 @@
+* {
+    box-sizing: border-box;
+}
+
+
+.main-header{
+    /* background-image: url('../images/car/alone/honda city/1.webp'); */
+    background-size: cover;
+    height: 750px; 
+    padding: 30px; 
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 20vh 15vh 15vh 50vh;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 15vw auto 15vw;
+    grid-template-rows: auto auto;
+    margin: 20px;
+
+}
+
+.grid-content{
+    margin-top: 40px;
+    
+}
+
+.car1{
+    width: 15vw;
+}
+
+.car2{
+    width: 30vw;
+    margin: 10px;
+}
+
+.car2 :hover{
+    width: 300px;
+    height: 500px;
+    transform: translateY(-2%);
+    
+    cursor: pointer;
+}
+
+.range{
+    display: flex;
+    justify-content: center;
+}
+
+img :hover{
+    transform: translateY(-2%);
+}
+
+.head-img{
+    margin: 20px;
+}
+
+
+
+.alone-grid{
+    display: grid;
+   /* width: 100%; */
+   /* width: 114em;  */
+    grid-gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+    align-items: start;
+    margin-top: 5rem;
+    
+}
+
+.alone-grid-item{
+    border-radius: 0.4rem;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+    transition: 0.2s;
+}
+
+.alone-grid-item :hover{
+    transform: translateY(-2%);
+    
+    box-shadow: 0 4rem 8rem rgba(0, 0, 0, 0.5);
+}
+
+.alone-card-img{
+    display: block;
+    width: 100%;
+    height: 20rem;
+    object-fit: contain;
+}
+
+
+
+
+.alone-card-content{
+    padding: 3rem;
+}
+
+.alone-card-header{
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.alone-card-text{
+    font-size: 1.6rem;
+    letter-spacing: 0.1rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+}
+
+.alone-card-btn{
+    display: block;
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 2rem;
+    text-align: center;
+    color: #3363ff;
+    border: none;
+    border-radius: 0.4rem;
+    transition: 0.2s;
+    cursor: pointer;
+    letter-spacing: 00.1rem;
+}
+
+.alone-card-btn :hover,
+.alone-card-btn :active{
+    background-color: #c2cffc;
+}
+
+@media only screen and (max-width : 60em){
+    body{
+        padding: 3rem;
+    }
+
+    .alone-grid{
+        grid-gap: 3rem;
+    }
+    /* .mainText{
+        font-size: 0.5rem;
+    } */
+}
+
+
+
+
+
+
+
+
+.-grid{
+    display: grid;
+   /* width: 100%; */
+   /* width: 114em;  */
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    align-items: start;
+    
+    
+}
+
+.-grid-item{
+    border-radius: 0.4rem;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+    transition: 0.2s;
+}
+
+.-grid-item :hover{
+    transform: translateY(-0.5%);
+    box-shadow: 0 4rem 8rem rgba(0, 0, 0, 0.5);
+}
+
+.-card-img{
+    display: block;
+    width: 100%;
+    /*height: 10rem;*/
+    object-fit: contain;
+}
+
+.-card-content{
+    padding: 1rem;
+}
+
+.-card-header{
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.-card-text{
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+    line-height: 1.3;
+    margin-bottom: 1.2rem;
+}
+
+.-card-btn{
+    display: block;
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.3rem;
+    text-align: center;
+    color: #3363ff;
+    border: none;
+    border-radius: 0.4rem;
+    transition: 0.2s;
+    cursor: pointer;
+    letter-spacing: 00.1rem;
+}
+
+.-card-btn :hover,
+.-card-btn :active{
+    background-color: #c2cffc;
+}
+
+
+
+.reserve-btn{
+    padding: 5px 10px;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(7, 31, 248);
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    /*transform: translate(50px , 30px) scale(2.5) rotate(-45deg) skewX(45deg); 
+    transform: matrix(1, 0.45, 0.45, 1, 70, 50);  */
+}
+
+.reserve-btn:hover{
+    background: rgb(84, 100, 247);
+    padding: 10px 15px;
+    
+}
+
+.submit-button{
+    padding: 5px 10px;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(7, 31, 248);
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    /*transform: translate(50px , 30px) scale(2.5) rotate(-45deg) skewX(45deg); 
+    transform: matrix(1, 0.45, 0.45, 1, 70, 50); */
+}
+
+.submit-button:hover{
+    background: rgb(84, 100, 247);
+    padding: 7px 12px;
+    
+}
+
+
+.rate-car{
+    display: flex;
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.after-img{
+    display: flex;
+    flex-direction: column;
+}
+
+.tip{
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+
+
+
+
+
+
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;
+        
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+
+
+/* [class*="grid-content"] {
+    width: 100%;
+  } */

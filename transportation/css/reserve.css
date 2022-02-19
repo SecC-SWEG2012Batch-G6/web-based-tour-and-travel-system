@@ -1,0 +1,11 @@
+.field{
+    border: 30px solid black;
+    border-radius: 30px;
+    margin-left: 30%;
+    margin-right: 30%;
+    font-size: large;
+}
+
+form div{
+    margin-top: 20px;
+}

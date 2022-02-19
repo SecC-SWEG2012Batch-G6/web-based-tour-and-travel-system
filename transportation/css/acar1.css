@@ -1,0 +1,80 @@
+.main-header{
+    background-image: url("../images/car/alone/honda city/1.webp");
+    background-size: cover;
+    height: 750px; 
+    padding: 30px; 
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 20vh 15vh 15vh 50vh;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: auto auto auto;
+
+}
+
+.grid-content{
+    
+}
+
+.car1{
+    width: 15vw;
+}
+
+.car2{
+    width: 60%;
+}
+
+
+
+
+.submit-button{
+    padding: 10px 15px;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(7, 31, 248);
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    /*transform: translate(50px , 30px) scale(2.5) rotate(-45deg) skewX(45deg); */
+    transform: matrix(1, 0.45, 0.45, 1, 70, 50);
+}
+
+.submit-button:hover{
+    background: rgb(84, 100, 247);
+    padding: 20px 30px;
+    
+}
+
+.star-icon{
+    display: flex;
+}
+
+.star-icon input{
+    display: none; 
+}
+
+.star-icon label{
+    display: block;
+    cursor: pointer;
+    width: 50px;
+    background: #ccc;
+}
+
+.star-icon label:before{
+    content: url(../../../star3.png);
+    position: relative;
+    display: block;
+    font-size: 50px;
+    fill: black;
+}
+
+.star-icon label:after{
+    content: url(../../../star3.png);
+    position: relative;
+    display: block;
+    font-size: 50px;
+    color: yellow;
+}

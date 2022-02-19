@@ -1,0 +1,775 @@
+/* ********************************** */
+/* GTM Analytics Implementation Starts*/
+/* ********************************** */
+
+/* 
+  Definition: This is GTM Module Processing code, using this on multiple js files and pages as asynchronous script
+  Developer: Sunil Sharma
+*/
+
+var isGTMFired = isGTMFired || false;
+var b2b_gtm_analytics = b2b_gtm_analytics || {};
+
+
+// The code will not be duplicated if it gtm is already executed
+if(!isGTMFired) {
+  isGTMFired = true;
+  EtB2b.utils = EtB2b.utils || {
+    isNull: function(obj) {
+        return obj == null || obj == 'null';
+    },
+    isUndefined: function(obj) {
+        return obj == undefined;
+    },
+    isBlank: function(obj) {
+        return typeof obj == 'undefined' || obj == '';
+    },
+    isOperatable: function(obj) {
+        if (typeof obj == 'object' &&
+            !this.isNull(obj)) {
+  
+            return Object.keys(obj).length == 0 ? false : true;
+        } else {
+            return !this.isBlank(obj) && !this.isNull(obj) && !this.isUndefined(obj);
+        }
+    },
+    getVal: function(obj) {
+        return !this.isBlank(obj) ? $.trim($(obj).val()) : '';
+    },
+    isUrl: function(string) {
+        var matcher = /^(?:\w+:)?\/\/([^\s\.]+\.\S{2}|localhost[\:?\d]*)\S*$/;
+        return matcher.test(string);
+    },
+    serialize: function(obj, prefix) {
+        var $this = this;
+        var str = [],
+            p;
+        for (p in obj) {
+            if (obj.hasOwnProperty(p)) {
+                var k = prefix ? prefix + "[" + p + "]" : p,
+                    v = obj[p];
+  
+                str.push(
+                    (v !== null && typeof v === "object") ?
+                    $this.serialize(v, k) :
+                    encodeURIComponent(k) + "=" + encodeURIComponent(v)
+                );
+            }
+        }
+        return str.join("&");
+    },    
+    is_externally_linked: function(link_element) {
+        return (link_element.host !== window.location.host);
+    },
+    hitAjaxRequest : function(requestSet) {
+      var $this = this;
+  
+      if($this.isOperatable(requestSet)){
+          var config = {
+              url                   : requestSet.url,
+              done                  : requestSet.done,
+              fail                  : $this.showResponseData,
+              method                : requestSet.method || 'GET',
+              dataType              : requestSet.dataType || 'json',
+              cache                 : $this.isOperatable(requestSet.cache) ? JSON.parse(requestSet.cache) :true,
+              data                  : requestSet.data || {},
+              async                 : $this.isOperatable(requestSet.async) ? JSON.parse(requestSet.async) :true,
+              responseType          : requestSet.responseType || '',
+              timeout               : requestSet.timeout || 30000,
+              requestErrorHandler   : requestSet.requestErrorHandler || ''
+          }
+          var obj = {
+              handleRequests: function (response){
+                    config.done(response);
+              },
+              requestOnloadHandler: function(xhr) {
+                  var response;
+                  
+                  var ob = {
+                     
+                     handleWithHttpStatus: function(response, status){
+                          if($this.isOperatable(response)){
+                              this.handleWithResponseCode();
+                          }else{
+                             console.log(xhr.response.message || xhr.statusText || "something went wrong!")   
+                          }
+                     },
+                     resolveResponseType: function(){
+                          if(config.responseType == 'blob'){
+                              response = xhr.response;
+  
+                          }else{
+                            response = typeof xhr.response == 'string' && (xhr.response).search("{")>=0 ? 
+                                              JSON.parse(xhr.response) : xhr.response;
+                          }
+  
+                          return response;
+                     },
+                     handleWithResponseCode: function(){
+                          if(typeof xhr.response != 'undefined' && !$this.isBlank(xhr.response)){
+                              (typeof this.resolveResponseType() == 'object' || 
+                                typeof this.resolveResponseType() == 'string' || 
+                                typeof this.resolveResponseType() == 'number' ||
+                                  config.responseType == 'blob') ?
+  
+                                  obj.handleRequests(response) : 
+                                  false
+                              ;
+                          }
+                     },
+                     validateHandleType: function(){
+                          var statusList = [400, 401, 403, 404, 405, 500, 503, 429];
+                          if($.inArray(xhr.status, statusList) != -1){
+                              this.handleWithHttpStatus(JSON.parse(xhr.response), xhr.status);
+                              return false; // if need to stop the execution further
+                          }else{
+                              this.handleWithResponseCode();
+                          }
+                     },
+                     init: function(){
+                          this.validateHandleType();
+                     } 
+                  };
+                  ob.init();
+              },
+              setRequestHeaderConfig: function(xhr){
+                  xhr.withCredentials   = true;
+                  xhr.timeout           = config.timeout;
+                  
+                  config.dataParams = (config.processData) ?
+                                          ($this.isOperatable(config.data) ? 
+                                              $this.serialize(config.data) : '') : 
+                                          config.data
+                  ;
+  
+                  config.contentType ? 
+                      xhr.setRequestHeader("Content-type", config.contentType) : false
+                  ;
+                    xhr.setRequestHeader('Accept', 'application/json');                       
+                    if(typeof window.csrf_token != 'undefined' && window.csrf_token){
+                      xhr.setRequestHeader('csrf_token',window.csrf_token);                       
+                    }
+                    if(typeof window.google_captcha_token != 'undefined' && window.google_captcha_token){
+                      xhr.setRequestHeader('google_captcha_token',window.google_captcha_token);  
+                    }
+              },
+              processRequest: function(){
+                  var xhr = new XMLHttpRequest(), url;
+                  config.nonCache = !config.cache ? '?' + (new Date().getTime()) : '' ;
+  
+                  if(config.method.toLowerCase() == 'get'){
+                      
+                      if(isOperatable(config.cache)){
+  
+                          var quesMark = (config.url).indexOf('?') == -1 ? '?' : '';
+                          
+                          url = $this.isOperatable(config.data) ? 
+                                  (config.url + quesMark + $this.serialize(config.data)) : config.url
+                          ; 
+  
+                      }else{
+                          url = $this.isOperatable(config.data) ? 
+                                  (config.url + config.nonCache + $this.serialize(config.data)) : config.url
+                          ;
+                      }
+                  }else{
+                      url = config.url + config.nonCache;
+                  }
+                  xhr.open(config.method, url , true); 
+                  if($this.isOperatable(config.responseType))
+                      xhr.responseType = "blob";
+                  
+                  this.setRequestHeaderConfig(xhr);
+                  xhr.onload = function(){obj.requestOnloadHandler(xhr)};
+                  xhr.send(config.dataParams);  
+              },
+              setOtherConfigOptions : function(){
+                  config.processData = (typeof requestSet.processData == "undefined" || 
+                                          $this.isUndefined(requestSet.processData)) ? 
+                                              true : requestSet.processData;
+                  
+                  config.contentType = (typeof requestSet.contentType == "undefined" || 
+                                          $this.isUndefined(requestSet.contentType)) ? 
+                                              'application/x-www-form-urlencoded; charset=UTF-8' : 
+                                               requestSet.contentType
+                  ;
+  
+                  this.processRequest();
+              },
+              init: function(){
+                  this.setOtherConfigOptions();
+              }
+          }          
+          obj.init();
+      }
+    },
+    encodeURIComponent: function(str) {
+        return encodeURIComponent(str).replace(/[!'()*]/g, escape);
+    },
+    get_alphanumeric: function(str, toLower) {
+        toLower = (typeof toLower !== 'undefined') ? toLower : 'Y';
+        var rep_str = str.replace(/[^a-zA-Z0-9]+/g, '-');
+        if (toLower == 'Y') {
+            rep_str = rep_str.toLowerCase();
+        }
+        return rep_str;
+  
+    },
+  
+    encodeHTML: function(param) {
+        return param.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+    },
+  
+    devConsole: function(label, data){
+        var showConsoleMsgs = localStorage.getItem('console');
+    
+        if(showConsoleMsgs && label && data){
+        console.log('%c' + label, 'background: aqua; color: #000; font-size: 15px;');
+        console.log(data);
+        }
+    }
+  };
+  
+  // Same function is used for load-more section
+  b2b_gtm_analytics.defineNewsSpecs = function(config){
+    var specs = '',
+        dataFetchingObject = typeof config.msid != "undefined" && config.msid ? config.msid : 'etb2b-news-detail-page',
+        $newsDetailsElement = $('#' + dataFetchingObject),
+        isBlogDetailsPageWithNoHistory = $('body.page-blogdetail').length && !config.eventName,
+        isBlogDetailsPageWithHistoryEvent = $('body.page-blogdetail').length && config.eventName == "history_change",
+        isVideoDetailsPage = $('body').hasClass('page-videoListingDetail') && !config.eventName,
+        isPodCastDetailsPage = typeof detailPageSchemas != "undefined" && detailPageSchemas == 1
+    ;
+  
+    var obj = {
+      setSpecsForBlogDetailsPage : function(){
+        var $firstPost = $('.article-body-full').eq(0);
+        var blogData = $firstPost.data('news');
+    
+        specs = {
+          authors : [
+            {name: blogData.author_name}
+          ],
+          artag: blogData.author_company,
+          msid: blogData.id,
+          secinfo: {
+            seolocation : function(){
+              return location.pathname.replace('/', '').split('/')[0]
+            }()
+          },
+          artdate : blogData.posted_date,
+          lastupd: blogData.modified_date,
+          breadcrumbTags: function(){
+            var tags = [];
+            var $posts = $firstPost.find('.post-tags');
+            
+            if($posts.length){
+              $posts.children().each(function(){
+                var tag = $.trim($(this).find('a').text());
+                tags.push(tag);
+              });
+            }
+    
+            return tags;
+          }()
+        }
+      },
+  
+      setSpecsForNewsDetailsPage : function(){
+        specs = $newsDetailsElement.attr('data-news');
+        specs = specs != '' && specs != null && specs != undefined ? JSON.parse(specs) : '';
+  
+        if(isBlogDetailsPageWithHistoryEvent && !specs.artag){
+          specs.artag = function(){
+            var designation  = $newsDetailsElement.find('.author-details .designation').text().split(',');
+            return (designation.length > 1) ? $.trim(designation[designation.length - 1]) : '';
+          }();
+        }
+      },
+  
+      setSpecsForVideoListingDetailsPage: function(){
+        videoDetails = $('.video-detail-section').data('news');
+        if(typeof videoDetails != "undefined" && EtB2b.utils.isOperatable(videoDetails)){
+          specs = {
+            authors : videoDetails.authors,
+            artag: videoDetails.agency,
+            msid: videoDetails.msid,
+            secinfo: videoDetails.vtitle,
+            artdate : videoDetails.lastupd,
+            lastupd: videoDetails.lastupd,
+            breadcrumbTags: [],
+          }
+        }
+      },
+  
+      setSpecsForPodCastDetailsPage: function(){
+        var podCastData = $('.featured_nws_dtl').data('news');       
+        
+        if(EtB2b.utils.isOperatable(podCastData)){
+          specs = {
+            authors:podCastData.authors,
+            artag: podCastData.agency,
+            msid: podCastData.msid,
+            secinfo: podCastData.vtitle,
+            artdate : podCastData.lastupd,
+            lastupd: podCastData.lastupd,
+            breadcrumbTags: [],
+            secinfo : {
+              seolocation : 'podcast'
+            }          
+          }
+        }          
+      },
+  
+      init: function(){
+        if($newsDetailsElement.length){
+          this.setSpecsForNewsDetailsPage();
+        
+        }else if(isBlogDetailsPageWithNoHistory){
+          this.setSpecsForBlogDetailsPage();       
+        
+        }else if(isVideoDetailsPage){
+          this.setSpecsForVideoListingDetailsPage();
+        
+        }else if(isPodCastDetailsPage){
+          this.setSpecsForPodCastDetailsPage();
+        }
+      }
+    };
+  
+    obj.init();
+  
+    return specs;
+  };
+  
+  b2b_gtm_analytics.setPageTemplate = function(config){
+    var templateName = location.pathname;
+    var obj = {
+      setInitialPageTemplateHandler: function(){
+        if(typeof ec_detail_file != "undefined" && EtB2b.utils.isOperatable(ec_detail_file)){
+        
+            if(ec_detail_file.indexOf('.') != -1) {
+              templateName = ec_detail_file.split('.')[0];
+      
+              templateName = (templateName.indexOf('_') != -1)  ? 
+                                    templateName.split('_')[1] : templateName;
+            }
+        }
+      },
+  
+      templateVerboseHandler: function(){
+        var templates = {
+          'index' : 'homepage',
+          'webcast' : 'webinarListing',
+          'webcasts' : 'webinar'
+        };
+  
+        for(i in templates){
+          if(templateName == i){
+            templateName = templates[i];
+            break;
+          }
+        }
+      },
+  
+      specificPagesHandler: function(){
+        var podCastPage = (location.pathname).split('.')[0].split('/')[1];
+        if(templateName == 'static'){
+          templateName = (location.pathname).split('.')[0];
+          templateName = templateName.split('/')[1];
+        
+        }else if(podCastPage == "podcast"){
+          if(typeof detailPageSchemas != "undefined" && detailPageSchemas == 1){
+            templateName = "podcastDetails";
+          
+          }else {
+            templateName = "podcastListing";
+          }
+        
+        }else if($('body.page-videoListingDetail').length){
+          if($('.video-detail-section').length){
+            templateName = "videoDetailsPage";
+          
+          }else{
+            templateName = "videoListingPage";
+          }
+        }
+      },
+  
+      init: function(){
+        this.setInitialPageTemplateHandler();
+        this.templateVerboseHandler();
+        this.specificPagesHandler();
+      }
+    };
+  
+    obj.init();
+  
+    return templateName;
+  };
+  
+  b2b_gtm_analytics.setAuthors =  function(config){
+    var authors = '';
+  
+    var authorsArray = [];
+    // This case handling is common for newsdetails and blog details page
+    if(typeof this.newsSpecs != 'undefined') {
+      if(config.eventName == "history_change"){
+        if(typeof this.newsSpecs.authors != 'undefined' && EtB2b.utils.isOperatable(this.newsSpecs.authors)){        
+          if(typeof b2b_gtm_analytics.newsSpecs.authors == 'string'){
+            authors = [];
+            return authors = ($.trim(b2b_gtm_analytics.newsSpecs.authors)).split(',');
+          }
+        
+        }else if(typeof this.newsSpecs.artauthors != 'undefined' && EtB2b.utils.isOperatable(this.newsSpecs.artauthors)){
+          authors = this.newsSpecs.artauthors;
+        }
+      
+      }else{
+        if(typeof this.newsSpecs.authors != 'undefined' && EtB2b.utils.isOperatable(this.newsSpecs.authors)){
+          authors = this.newsSpecs.authors;
+        }
+      }
+  
+      for(item in authors){
+        if(authors[item]['name']){
+          authorsArray.push(authors[item]['name']);
+        }
+      }
+    }
+    return authorsArray.length ? authorsArray : '';
+  };
+  
+  b2b_gtm_analytics.setAgency =  function(config){
+    return (typeof this.newsSpecs != 'undefined' && typeof this.newsSpecs.artag != 'undefined') ? this.newsSpecs.artag : '';
+  };
+  
+  b2b_gtm_analytics.setSection = function(config){
+    var section = '';
+    var subSection = '';
+    var bodyClasses = document.body.classList.toString().toLowerCase();
+    var $this = this;
+    var isDetailsPage = typeof $this.newsSpecs != 'undefined' && typeof $this.newsSpecs.secinfo != 'undefined' && EtB2b.utils.isOperatable($this.newsSpecs.secinfo) && typeof $this.newsSpecs.secinfo.seolocation != 'undefined' && EtB2b.utils.isOperatable($this.newsSpecs.secinfo.seolocation);
+    var isListingPage = bodyClasses.indexOf('listing') != -1;
+    var isBlogListingPage = $('body').hasClass('page-blogListing') && $('.body-wrap h1.hdng1 a > span').length;
+    var isPodCastListingPage = !$('.data-source-podcasts').siblings('.data-source-').length && $('.data-source-podcasts').length && $('#main_vlist_bx').length;
+    var isBlogDetailPageWithHistoryChange = $('body.page-blogdetail').length && config.eventName == "history_change" ;
+    var isVideoDetailsPage = $('body.page-videoListingDetail').length && $('.video-detail-section').length;
+  
+    var obj = {
+      detailPageHandler: function(){
+        var seoLocation = ($this.newsSpecs.secinfo.seolocation).split('/');
+        section = seoLocation[0];
+        subSection = seoLocation[1] || '';
+      },
+  
+      paginationLogicHandler: function(){
+         // Handle Pagination Logic for listing
+         var pathname = window.location.pathname.split('/');
+         var pagination = pathname[pathname.length - 1];
+     
+         if(typeof config.pagination != "undefined" && config.eventName == 'history_change'){
+           pagination = config.pagination;
+         }
+     
+         subSection = typeof Number(pagination) == 'number' && !Number.isNaN(Number(pagination)) ? pagination : '';
+      },
+  
+      specificListingPagesHandler: function(){
+        section = $('.body-wrap h1.hdng1').text();
+  
+        // Handle listing sections
+        if(isBlogListingPage){
+          section = $('.body-wrap h1.hdng1 a > span').text();
+        
+        }else if(isPodCastListingPage){
+          section = 'podcast';
+        }
+      },
+  
+      listingPageHandler: function(){
+        this.specificListingPagesHandler();
+        this.paginationLogicHandler();
+      },
+  
+      blogDetailsPageWithHistoryEventHandler: function(){
+        section = location.pathname.split('/')[1];
+      },
+  
+      videoDetailsPageHandler: function(){
+        section = 'Videos';
+        subSection = '';
+      },
+  
+      init: function(){
+        if(isDetailsPage) {
+          this.detailPageHandler();
+       
+        }else if((isListingPage && !isVideoDetailsPage) || isPodCastListingPage){
+          this.listingPageHandler();
+        
+        }else if(isBlogDetailPageWithHistoryChange){
+          this.blogDetailsPageWithHistoryEventHandler();
+        
+        }else if(isVideoDetailsPage){
+          this.videoDetailsPageHandler();
+        }
+      }
+    };
+  
+    obj.init();
+  
+    return {
+      section: section,
+      subSection: subSection
+    };
+  
+  };
+  
+  b2b_gtm_analytics.setCmsId = function(config){
+    var cmsid = (typeof this.newsSpecs != 'undefined' && typeof this.newsSpecs.msid != 'undefined') ? this.newsSpecs.msid : ET_PORTAL ;
+  
+    if(typeof wc_id != "undefined") {//Webinar
+      cmsid = wc_id;
+    
+    }else if(typeof siteId != "undefined") {//microsite
+      cmsid = siteId;
+    
+    }else if(typeof videoDetails != "undefined"){//video detail
+      cmsid = videoDetails.msid;
+    }
+  
+    return cmsid;
+  };
+  
+  b2b_gtm_analytics.setDates = function(config){
+    var publishedDate = '', 
+        publishedTime = '',
+        updatedDate = ''
+    ;
+    
+    var $this = b2b_gtm_analytics;
+  
+    
+  
+    var obj = {
+      newsDetailsHandler: function(){
+        if(typeof $this.newsSpecs != "undefined"){
+          if(typeof $this.newsSpecs.artdate != 'undefined' && EtB2b.utils.isOperatable($this.newsSpecs.artdate)){
+            var getStampArray = ($this.newsSpecs.artdate).split(' ');
+            
+            publishedDate = getStampArray[0];
+            publishedTime = getStampArray[1];
+          }
+    
+          if(typeof $this.newsSpecs.lastupd != 'undefined' && EtB2b.utils.isOperatable($this.newsSpecs.lastupd)){          
+            updatedDate = $this.newsSpecs.lastupd;
+          }
+        }
+  
+      },
+  
+      webinarDetailsHandler: function(){
+        if(typeof wc_id != "undefined" && typeof wc_date_format != "undefined" && typeof wc_lastupd != "undefined"){
+          var getTimeStampArray = wc_date_format.split(' ');
+  
+          publishedDate = getTimeStampArray[0].replaceAll('/', '-'); // to change the date format
+          publishedTime = getTimeStampArray[1];
+          updatedDate = wc_lastupd;
+        }
+      },
+  
+      init: function(){
+        this.newsDetailsHandler();
+        this.webinarDetailsHandler();
+      }
+    };
+  
+    obj.init();
+  
+    return {
+      date: publishedDate,
+      time: publishedTime,
+      updatedDate: updatedDate
+    };
+  };
+  
+  b2b_gtm_analytics.setKeywords = function(config){
+    // In use for details Page only - as it depends on - this.newsSpecs
+    var isKeywordsSet = typeof this.newsSpecs != 'undefined' && typeof this.newsSpecs.breadcrumbTags != 'undefined' && EtB2b.utils.isOperatable(this.newsSpecs.breadcrumbTags) ;
+  
+    if($('body').hasClass('page-blogdetail') && typeof config.msid != "undefined" && typeof config.eventName != "undefined" && config.eventName == "history_change"){
+      var tags = [];
+      var $posts = $('#' + config.msid).find('.post-tags');
+      
+      if($posts.length){
+        $posts.children().each(function(){
+          var tag = $.trim($(this).find('a').text());
+          tags.push(tag);
+        });
+        
+        if(tags.length){
+          this.newsSpecs.breadcrumbTags = tags;
+          isKeywordsSet = true;
+        }
+        
+      }
+    }
+    return isKeywordsSet ? this.newsSpecs.breadcrumbTags : '';
+  };
+  
+  b2b_gtm_analytics.setMediaContents = function(config, param){
+    var mediaArray = '';
+    var $this = b2b_gtm_analytics;
+  
+    var obj = {
+      newsDetailsHandler: function(){
+        if(typeof $this.newsSpecs != "undefined"){
+            var msid = $this.newsSpecs.msid,
+                newsSel = '#news_dtl_' + msid,
+                mediaSel = newsSel + ' .flexi-' + param
+            ;
+  
+            if($(mediaSel).length){
+              mediaArray = [];
+          
+              $(mediaSel).each(function(){
+                var noSlikeId = $(this).attr('data-videoid');
+                var slikeId = $(this).attr('id');
+                
+                if(noSlikeId){ // youtube case
+                  mediaArray.push(noSlikeId);     
+                
+                }else if(slikeId && slikeId.indexOf('video-') != -1){//slike case
+                  slikeId = slikeId.split('-')[1];
+                  mediaArray.push(slikeId);     
+                }
+              });
+            }
+        }
+  
+      },
+  
+      webinarsDetailsHandler: function(){
+        if(typeof wc_video_id != 'undefined' && param == "video"){//webinar video
+          mediaArray = [];
+          mediaArray.push(wc_video_id);
+        
+        }
+      },
+  
+      videoDetailsHandler: function(){
+        if(typeof videoDetails != "undefined" && typeof videoDetails.video != "undefined" && param == "video"){
+          mediaArray = [];
+          mediaArray.push(videoDetails.video);
+        }
+      },
+  
+      podCastDetailsHandler: function(){
+        var isPodCastDetailsPage = typeof detailPageSchemas != "undefined" && detailPageSchemas == 1
+        
+        if(param == 'audio' && typeof gtmDataStore != "undefined" && EtB2b.utils.isOperatable(gtmDataStore) && isPodCastDetailsPage && typeof videoid != "undefined" && videoid){
+          mediaArray = [];
+          mediaArray.push(videoid);
+        }
+      },
+  
+      init: function(){
+        this.newsDetailsHandler();
+        this.webinarsDetailsHandler();
+        this.videoDetailsHandler();
+        this.podCastDetailsHandler();
+      }
+    };
+  
+    obj.init();
+  
+    return mediaArray;
+  };
+  
+  b2b_gtm_analytics.setDataLayerEvent = function(config){
+    return typeof config.eventName != "undefined" && config.eventName ? config.eventName : 'page_property';
+  };
+  
+  b2b_gtm_analytics.setPipExists = function(config){
+    var portalInPortalName = "";
+  
+    if(typeof is_pip != "undefined" && is_pip && typeof pip != "undefined" && EtB2b.utils.isOperatable(pip)){
+      if(typeof pip.category != "undefined" && EtB2b.utils.isOperatable(pip.category)){
+        portalInPortalName = pip.category;
+      }
+    }
+  
+    return portalInPortalName;
+  };
+  
+  b2b_gtm_analytics.setPageLevelProperties = function(config){
+    var fetchGtmData = {
+      event: this.setDataLayerEvent(config),
+      portal_in_portal: this.setPipExists(config),
+      page_title : document.title,
+      page_template : this.setPageTemplate(config),
+      authors : this.setAuthors(config),
+      agency: this.setAgency(config),
+      section: this.setSection(config).section,
+      subsection: this.setSection(config).subSection,
+      cmsid : this.setCmsId(config),
+      published_date: this.setDates(config).date,
+      published_time: this.setDates(config).time,
+      last_update_date: this.setDates(config).updatedDate,
+      special_coverage : '',
+      nature_of_content : '',
+      browsing_platform: deviceType,
+      keywords: this.setKeywords(config),
+      video_embed : this.setMediaContents(config, 'video'),
+      audio_embed : this.setMediaContents(config, 'audio')
+    }
+
+    if(EtB2b.utils.isOperatable($_GET)){
+      fetchGtmData = Object.assign(fetchGtmData, $_GET);
+    } 
+  
+    EtB2b.utils.devConsole('page internal data', b2b_gtm_analytics.newsSpecs);
+    EtB2b.utils.devConsole('GTM DataLayer', fetchGtmData);
+    
+    return fetchGtmData;
+  };
+  
+  
+  b2b_gtm_analytics.init = function(config){
+    try {
+      var allowGTMProcess = isGTMLoadValid && typeof dataLayer != 'undefined';
+      var $this = b2b_gtm_analytics;
+      var config = config ? config : {};
+  
+      if(allowGTMProcess) {
+        if(typeof $ != "undefined") {    
+  
+              b2b_gtm_analytics.newsSpecs = b2b_gtm_analytics.defineNewsSpecs(config);
+              
+              var dataset = this.setPageLevelProperties(config);
+              dataLayer.push(dataset);
+        }else {
+          EtB2b.utils.devConsole('GTM Module', 'jQuery Not defined');
+          setTimeout(function(){
+            $this.init();
+          }, 2000);
+        }
+      }
+    }catch(e){
+      console.log(e);
+    }
+  
+  };
+  
+  /* ********************************** */
+  /* GTM Analytics Implementation Ends*/
+  /* ********************************** */
+  EtB2b.utils.devConsole('GTM Module Inititiated', 'app.analytics.gtm.js');
+  b2b_gtm_analytics.init();
+}
+
+
+
+
+

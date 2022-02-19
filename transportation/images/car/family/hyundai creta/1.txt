@@ -1,0 +1,202 @@
+Key specifications of Hyundai Creta
+Ex-showroom Price Delhi	₹ 8,92,000.00
+Mileage (ARAI) kmpl	15.29 kmpl
+Fuel Type	Petrol
+Engine Displacement	1591 cc
+Power	122 bhp @ 6400 RPM
+Torque	154 Nm @ 4850 RPM
+
+
+
+
+
+ENGINE & TRANSMISSION
+Fuel Type	Petrol
+Max Power	122 bhp @ 6400 RPM
+Max Torque	154 Nm @ 4850 RPM
+Mileage (ARAI)	15.29
+Alternate Fuel	Not Applicable
+Transmission Type	Manual
+No of gears	6 Gears
+Drivetrain	Front Wheel Drive
+Cylinders	4, Inline
+Turbocharger/Supercharger	No
+Valve/Cylinder (Configuration)	4, DOHC
+Engine Start-Stop Function	No
+Engine Type	VTVT Petrol Engine
+Engine Description	1.6-litre 121.3bhp 16V VTVT Petrol Engine
+No. of Cylinders	4
+Valve Configuration	DOHC
+Fuel Supply System	MPFI
+Bore x Stroke	-
+Compression Ratio	-
+Super Charger	No
+Overdrive	-
+Synchronizers	-
+Clutch Type	-
+Top Speed	165 Kmph
+Acceleration (0-100 kmph)	10.5 Seconds
+Drag Coefficient	-
+Keyless entry/Push button start	No
+DIMENSIONS & WEIGHT
+Length	4270 mm
+Width	1780 mm
+Height	1630 mm
+Displacement	1591
+Wheelbase	2590 mm
+Ground Clearance	190 mm
+Manual Shifting for Automatic	No
+Turning Radius (wheel base)	5.3 meters
+Wheel Size	16 Inch
+Alloy Wheel Size	-
+Wheel Base	2590mm
+Front Tread	-
+Rear Tread	-
+Gross Weight	-
+CAPACITY
+Seating Capacity	5
+Fuel Tank Capacity	60 litres
+No of Seating Rows	2 Rows
+Front Headroom	-
+Front Legroom	-
+Rear Headroom	-
+Rear Legroom	-
+COMFORT & CONVENIENCE
+Air Conditioner	Yes
+Rear AC	Vents Only
+Cruise Control	No
+Parking Sensors	No
+Heater	Yes
+Parking Assist	No
+Anti-glare Mirrors	Manual - Internal Only
+Automatic Climate Control	No
+Air Quality Control	No
+Remote Trunk Opener	Yes
+Remote Fuel Lid Opener	Yes
+Cup Holders-Front	Yes
+Cup Holders-Rear	No
+Rear A/C Vents	Yes
+Heated Seats - Front	No
+Heated Seats - Rear	No
+Glove Box Cooling	No
+Bottle Holder	Front & Rear Door
+Air Conditioner	Yes
+Cigarette Lighter	No
+Driving Experience Control Eco	No
+Rear Camera	No
+Anti-Theft Device	Yes
+DOORS, WINDOWS, MIRRORS & WIPERS
+Power Windows	Front & Rear
+Rain-sensing Wipers	No
+Sunroof / Moonroof	No
+Boot-lid Opener	With Key
+Exterior Door Handles	Body Coloured
+Interior Door Handles	Chrome
+Rear Window Washer	No
+Tinted Glass	Yes
+No of Doors	5
+Electronically controlled rear view mirror	Body Coloured
+LOCKS & SECURITY
+Central Locking	Yes
+Engine immobilizer	Yes
+Child Safety Lock	Yes
+Speed Sensing Door Lock	No
+SUSPENSIONS, BRAKES & STEERING
+Anti-Lock Braking System (ABS)	Yes
+Suspension Front	Mc Pherson Strut Type with Coil Spring
+Suspension Rear	Coupled Torsion Beam Axle
+Front Brake Type	Disc
+Rear Brake Type	Drum
+Steering Type	Power assisted (Electric)
+Front Tyres	205 / 65 R16 ?
+Rear Tyres	205 / 65 R16
+Brake Assist (BA)	Yes
+Traction Control System (TC/TCS)	No
+Hill Hold Control	No
+Hill Descent Control	No
+Limited Slip Differential (LSD)	No
+Power Steering	Yes
+Steering Wheel Gearshift Paddles	No
+Traction Control	No
+ShockAbsorbers Type	Coil Spring
+Front Brake Type	Disc
+Rear Brake Type	Drum
+Tyre Size	205/65 R16
+Tyre Type	Tubeless
+SAFETY
+Airbags	2 (Driver & Co-Driver)
+Dual-Stage Airbags	No
+Tyre Pressure Monitoring System (TPMS)	No
+Seat Belt Warning	Yes
+Child Seat Anchor Points	No
+Seat Belt Warning	Yes
+Central Locking	Yes
+Power Door Locks	Yes
+Anti-Theft Alarm	Yes
+Crash Sensor	Yes
+Clutch Lock	No
+SEATS & UPHOLSTERY
+Seat Upholstery	Fabric
+Folding Rear Seat	Full
+3rd Row Seats	No
+3rd Row Seat Adjustment	No
+Split Rear Seat	No
+Front Seat Pockets	Yes
+Electrically Adjustable Headrests	No
+Folding Table in The Rear	No
+Co-driver adjustable seat	Yes
+EXTERIOR
+Roof rails	No
+Body-Coloured Bumpers	Yes
+Chrome Finish Exhaust pipe	No
+Body Kit	No
+Wheel Covers	No
+Alloy Wheels	No
+Power Antenna	Yes
+Rear Spoiler	No
+Removable/Convertible Top	No
+Roof Carrier	No
+Side Stepper	No
+Chrome Grille	No
+Chrome Garnish	No
+Side Impact Beams	Yes
+Front Impact Beams	Yes
+LIGHTING
+Automatic Headlamps	No
+Follow me home headlamps	Yes
+Rear Reading Lamp	No
+Tail Lamps	Conventional
+Cabin Lamps	Front
+Glove Box Lamp	No
+Lights on Vanity Mirrors	
+Trunk Light	No
+Smoke Headlamps	Yes
+INSTRUMENTATION
+Clock	Digital
+Low Fuel Level Warning	Yes
+Door Ajar Warning	Yes
+Tachometer	Analog
+Average Fuel Consumption	No
+Average Speed	Yes
+Distance to Empty	No
+Adjustable Cluster Brightness	No
+Gear Indicator	Yes
+Shift Indicator	Dynamic
+Instantaneous Consumption	Yes
+Outside Temperature Display	No
+Digital Odometer	Yes
+Tyre Pressure Monitor	No
+Centrally Mounted Fuel Tank	Yes
+Engine Check Warning	No
+ENTERTAINMENT, INFORMATION & COMMUNICATION
+CD Player	No
+DVD Playback	No
+AM/FM Radio	No
+Kerb Weight	
+Integrated (in-dash) Music System	No
+Display Screen for Rear Passengers	No
+iPod Compatibility	No
+Internal Hard-drive	No
+Accessory Power Outlet	No
+Integrated Antenna	No
+Touch Screen	No
